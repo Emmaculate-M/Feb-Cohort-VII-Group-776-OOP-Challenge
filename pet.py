@@ -2,25 +2,25 @@ class Pet:
     def __init__(self, name, pet_type="🐾"):
         self.name = name
         self.pet_type = pet_type
-        self.fullness = 5   
-        self.rest = 5         
-        self.mood = 5         
+        self.hunger = 5
+        self.energy = 5
+        self.happiness = 5
         self.tricks = []
 
     def eat(self):
-        self.fullness = min(10, self.fullness + 3)
-        self.mood = min(10, self.mood + 1)
+        self.hunger = max(0, self.hunger - 3)
+        self.happiness = min(10, self.happiness + 1)
         print(f"{self.pet_type} {self.name} is eating. Yum!")
 
     def sleep(self):
-        self.rest = min(10, self.rest + 5)
+        self.energy = min(10, self.energy + 5)
         print(f"{self.pet_type} {self.name} is sleeping. Zzz...")
 
     def play(self):
-        if self.rest >= 2:
-            self.rest -= 2
-            self.mood = min(10, self.mood + 2)
-            self.fullness = max(0, self.fullness - 1)
+        if self.energy >= 2:
+            self.energy -= 2
+            self.happiness = min(10, self.happiness + 2)
+            self.hunger = min(10, self.hunger + 1)
             print(f"{self.pet_type} {self.name} is playing. Whee!")
         else:
             print(f"{self.pet_type} {self.name} is too tired to play!")
@@ -43,15 +43,15 @@ class Pet:
 
     def get_status(self):
         print(f"\n--- {self.name}'s Status ---")
-        print(f"Fullness: {self.fullness}/10")
-        print(f"Rest: {self.rest}/10")
-        print(f"Mood: {self.mood}/10")        
+        print(f"Hunger: {self.hunger}/10")
+        print(f"Energy: {self.energy}/10")
+        print(f"Happiness: {self.happiness}/10")
         
-        if self.fullness <= 2:
+        if self.hunger >= 8:
             print("Your pet is very hungry!")
-        if self.rest <= 2:
+        if self.energy <= 2:
             print("Your pet is very tired!")
-        if self.mood <= 2:
+        if self.happiness <= 2:
             print("Your pet is feeling sad!")
 
         if self.tricks:
@@ -59,3 +59,4 @@ class Pet:
         else:
             print("No tricks learned yet.")
         print("-------------------------\n")
+
